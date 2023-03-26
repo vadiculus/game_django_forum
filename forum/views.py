@@ -1,8 +1,8 @@
 from django.shortcuts import render
-from .models import Post
+from .models import Post, Comment
 from rest_framework import generics
 from django.core.paginator import Paginator
-from .serializers import MainPageSerializer, PostsSerializer
+from .serializers import MainPageSerializer, PostsSerializer, CommentsSerializer, PostPageSerializer
 from django.db.models import Count, F
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -21,11 +21,13 @@ class PostDetailsView(APIView):
     def get(self, request, *args, **kwargs):
         pk = kwargs.get('pk', None)
         if pk:
-            post = Post.objects.get(pk=pk)
-            serializer = PostsSerializer(post).data
+            page_data = {}
+            page_data['post'] = Post.objects.get(pk=pk)
+            page_data['comments'] = Comment.objects.filter(post=page_data['post'])
+            serializer = PostPageSerializer(page_data).data
             return Response(serializer)
         else:
             return Response({'error': 'method PUT is not allowed'})
 
-    def post(self, request):
+    def post(self, request, *args, **kwargs):
         pass

@@ -22,3 +22,7 @@ class CommentsSerializer(serializers.ModelSerializer):
 class MainPageSerializer(serializers.Serializer):
     posts = PostsSerializer(read_only=True, many=True)
     popular_tags = TagsSerializer(read_only=True, many=True)
+
+class PostPageSerializer(serializers.Serializer):
+    post = PostsSerializer(read_only=True)
+    comments = CommentsSerializer(read_only=True, many=True)

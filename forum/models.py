@@ -18,7 +18,9 @@ class Post(models.Model):
 
 class Comment(models.Model):
     content = models.TextField(verbose_name="Контент")
-    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments', verbose_name="Пост")
+    post = models.ForeignKey(Post, null=True, blank=True, on_delete=models.CASCADE, related_name='comments', verbose_name="Пост")
+    comment = models.ForeignKey('self', null=True, blank=True, on_delete=models.CASCADE, related_name='answers',
+                                verbose_name="Комментарий")
     author = models.ForeignKey(User, on_delete=models.PROTECT, verbose_name="Автор")
     created = models.DateTimeField(auto_now_add=True, editable=False)
 
