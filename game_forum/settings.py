@@ -37,6 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'taggit',
+    'accounts',
+    'forum',
 ]
 
 MIDDLEWARE = [
@@ -76,11 +80,11 @@ WSGI_APPLICATION = 'game_forum.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'game_forum',
-        'USER': 'admin',
         'PASSWORD': 'admin147',
-        'HOST':'localhost',
-        'PORT': 5432
+        'NAME': 'game_forum',
+        'USER': 'postgres',
+        'HOST':'127.0.0.1',
+        'PORT': '5432'
     }
 }
 
@@ -125,3 +129,5 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AUTH_USER_MODEL = 'accounts.User'
