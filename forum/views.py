@@ -26,3 +26,6 @@ class PostDetailsView(APIView):
             return Response(serializer)
         else:
             return Response({'error': 'method PUT is not allowed'})
+
+    def post(self, request):
+        pass

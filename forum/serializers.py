@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from forum.models import Post
+from forum.models import Post, Comment
 from taggit.models import Tag
 
 
@@ -12,6 +12,11 @@ class PostsSerializer(serializers.ModelSerializer):
 class TagsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Tag
+        fields = '__all__'
+
+class CommentsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Comment
         fields = '__all__'
 
 class MainPageSerializer(serializers.Serializer):

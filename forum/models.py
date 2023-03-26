@@ -7,7 +7,7 @@ class Post(models.Model):
     content = models.TextField(verbose_name="Контент")
     author = models.ForeignKey(User, on_delete=models.PROTECT, verbose_name="Автор")
     tags = TaggableManager()
-    created = models.DateTimeField(auto_now_add=True)
+    created = models.DateTimeField(auto_now_add=True, editable=False)
 
     def __str__(self):
         return self.title
@@ -20,7 +20,7 @@ class Comment(models.Model):
     content = models.TextField(verbose_name="Контент")
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments', verbose_name="Пост")
     author = models.ForeignKey(User, on_delete=models.PROTECT, verbose_name="Автор")
-    created = models.DateTimeField(auto_now_add=True)
+    created = models.DateTimeField(auto_now_add=True, editable=False)
 
     class Meta:
         verbose_name = 'Комментарий'
@@ -31,7 +31,7 @@ class ReplyComment(models.Model):
     comment = models.ForeignKey(Comment,null=True, blank=True, on_delete=models.CASCADE, related_name='rep_comments', verbose_name="Комментарий")
     rep_comment = models.ForeignKey('self', null=True, blank=True, on_delete=models.CASCADE, related_name='answers', verbose_name="Ответы")
     author = models.ForeignKey(User, on_delete=models.PROTECT, verbose_name="Автор")
-    created = models.DateTimeField(auto_now_add=True)
+    created = models.DateTimeField(auto_now_add=True, editable=False)
 
     class Meta:
         verbose_name = 'Ответный Комментарий'
