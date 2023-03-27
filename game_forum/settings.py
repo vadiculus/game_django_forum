@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'taggit',
     'accounts',
     'forum',
+    'silk',
+    'mptt',
 ]
 
 MIDDLEWARE = [
@@ -51,6 +53,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'silk.middleware.SilkyMiddleware'
 ]
 
 ROOT_URLCONF = 'game_forum.urls'
